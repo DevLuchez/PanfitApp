@@ -1,4 +1,5 @@
 android {
+    namespace "com.work.panfit_app"
     compileSdkVersion 33
 
     defaultConfig {
