@@ -1,12 +1,13 @@
-android {
-    compileSdkVersion 33
-
-    defaultConfig {
-        applicationId "com.work.panfit_app"
-        minSdkVersion 21
-        targetSdkVersion 33
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // A versão do AGP (Android Gradle Plugin) deve ser compatível com o Flutter
+        classpath 'com.android.tools.build:gradle:7.4.2' // Certifique-se de usar uma versão que funcione com o Flutter
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22' // Certifique-se de usar a versão Kotlin correta
+        classpath 'dev.flutter:flutter-gradle-plugin' // Flutter Gradle Plugin
     }
 }
 
