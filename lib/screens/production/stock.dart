@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:panfit_app/screens/production/register/BarcodeScannerPage.dart';
+import 'package:panfit_app/screens/production/register/ProductionRequestScreen.dart';
 import 'package:panfit_app/screens/production/register/input_register.dart';
 import 'package:panfit_app/repository/item_repository.dart';
 import 'package:panfit_app/domain/item.dart';
@@ -72,7 +72,7 @@ class _StockPageState extends State<StockPage> {
             final result = await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => BarcodeScannerPage(),
+                builder: (context) => ProductionRequestScreen(),
               ),
             );
 
