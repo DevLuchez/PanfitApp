@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../domain/item.dart';
-import '../../../repository/item_repository.dart';
-import 'ProductionRequestScreen.dart';
 
-class InputRegisterPage extends StatefulWidget {
+import '../../../domain/product.dart';
+import '../../../repository/product_repository.dart';
+
+class ProductRegisterPage extends StatefulWidget {
   @override
-  _InputRegisterPageState createState() => _InputRegisterPageState();
+  _ProductRegisterPageState createState() => _ProductRegisterPageState();
 }
 
-class _InputRegisterPageState extends State<InputRegisterPage> {
-  // Campos controladores para os inputs do formulário
+class _ProductRegisterPageState extends State<ProductRegisterPage> {
+  // Controladores para os campos do formulário
   final _nameController = TextEditingController();
-  final _gtinController = TextEditingController();
   final _weightController = TextEditingController();
-  String _selectedCategory = '';
+  final _categoryController = TextEditingController();
+  final _recipeController = TextEditingController();
+  final _salePriceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Cadastro de Insumos',
+          'Cadastro de Produtos',
           style: TextStyle(
             fontFamily: 'Poppins',
           ),
@@ -42,8 +43,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-
-            // Imagem do insumo
+            // Imagem do produto
             Center(
               child: Container(
                 width: 200,
@@ -54,40 +54,13 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
             ),
             SizedBox(height: 40),
 
-            // Campo Nome do Insumo
+            // Campo Nome do Produto
             TextField(
               controller: _nameController, // Armazena o valor do nome
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFF4E9DA),
-                labelText: 'Nome do insumo',
-                labelStyle: TextStyle(color: Color(0xFF996536)),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: Color(0xFF996536),
-                    width: 1.0,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-
-            // Campo GTIN
-            TextField(
-              controller: _gtinController, // Armazena o valor do GTIN
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFFF4E9DA),
-                labelText: 'GTIN',
+                labelText: 'Nome do produto',
                 labelStyle: TextStyle(color: Color(0xFF996536)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -115,23 +88,56 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
             SizedBox(height: 20),
 
             // Campo Categoria
-            DropdownButton<String>(
-              value: _selectedCategory.isEmpty ? null : _selectedCategory,
-              hint: Text('Selecione a categoria'),
-              items: ['Categoria 1', 'Categoria 2', 'Categoria 3'] // Exemplos
-                  .map((category) => DropdownMenuItem(
-                value: category,
-                child: Text(category),
-              ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedCategory = value ?? '';
-                });
-              },
+            TextField(
+              controller: _categoryController, // Armazena a categoria
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFF4E9DA),
+                labelText: 'Categoria',
+                labelStyle: TextStyle(color: Color(0xFF996536)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
             ),
+            SizedBox(height: 20),
+
+            // Campo Receita
+            TextField(
+              controller: _recipeController, // Armazena a receita
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFF4E9DA),
+                labelText: 'Receita',
+                labelStyle: TextStyle(color: Color(0xFF996536)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+
+            // Campo Preço de Venda
+            TextField(
+              controller: _salePriceController, // Armazena o preço de venda
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFF4E9DA),
+                labelText: 'Preço de Venda',
+                labelStyle: TextStyle(color: Color(0xFF996536)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
 
 
+            // Botão Salvar Produto
             // Botões Salvar e Excluir
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,60 +160,37 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                   ),
                 ),
 
-                ElevatedButton.icon(
-                  onPressed: () async {
-                    // Navegar para a tela de cadastro de insumos
-                    final result = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductionRequestScreen(),
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.qr_code_scanner, color: Colors.black),
-                  label: Text('Código de Barras'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFAA7845),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    minimumSize: Size(180, 60),
-                  ),
-                ),
-
                 // Botão Salvar insumo
                 ElevatedButton.icon(
                   onPressed: () async {
                     if (_nameController.text.isNotEmpty &&
-                        _gtinController.text.isNotEmpty &&
                         _weightController.text.isNotEmpty &&
-                        _selectedCategory.isNotEmpty) {
+                        _categoryController.text.isNotEmpty &&
+                        _recipeController.text.isNotEmpty &&
+                        _salePriceController.text.isNotEmpty) {
                       try {
-                        final itemDTO = ItemDTO(
+                        final productDTO = ProductDTO(
                           name: _nameController.text,
-                          GTIN: _gtinController.text,
-                          wheight: double.tryParse(_weightController.text) ?? 0.0,
-                          category: _selectedCategory,
+                          weight: double.tryParse(_weightController.text) ?? 0.0,
+                          category: _categoryController.text,
+                          recipe: _recipeController.text,
+                          salePrice: double.tryParse(_salePriceController.text) ?? 0.0,
                         );
 
-                        // Chama o método saveItem do repositório
-                        await saveItem(itemDTO);
+                        // Chama o método saveProduct do repositório
+                        await saveProduct(productDTO);
 
-                        // Exibe mensagem de sucesso
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Insumo cadastrado com sucesso!')),
+                          SnackBar(content: Text('Produto cadastrado com sucesso!')),
                         );
 
-                        // Retorna à tela anterior
                         Navigator.pop(context);
                       } catch (e) {
-                        // Exibe mensagem de erro
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Erro ao salvar insumo: $e')),
+                          SnackBar(content: Text('Erro ao salvar produto: $e')),
                         );
                       }
                     } else {
-                      // Exibe mensagem de validação
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Preencha todos os campos!')),
                       );
