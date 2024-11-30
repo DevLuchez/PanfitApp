@@ -30,13 +30,15 @@ Future<List<Product>> fetchProducts() async {
 Future<Product> saveProduct(ProductDTO product) async {
   try {
     var dio = Dio();
-    final response = await dio.post('http://localhost:8083/product', data: product.toJson());
+    final response = await dio.post(
+      'http://localhost:8083/product',
+      data: product.toJson(),
+    );
 
     if (response.statusCode == 201) {
       var jsonData = response.data;
       if (jsonData != null && jsonData['data'] != null) {
-        Product newProduct = Product.fromJson(jsonData['data']);
-        return newProduct;
+        return Product.fromJson(jsonData['data']);
       } else {
         throw Exception('Estrutura de resposta inválida');
       }
@@ -48,6 +50,7 @@ Future<Product> saveProduct(ProductDTO product) async {
     throw Exception('Erro na solicitação $e');
   }
 }
+
 
 // Função para excluir um produto do backend
 Future<bool> deleteProduct(String productId) async {

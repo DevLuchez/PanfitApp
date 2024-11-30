@@ -80,7 +80,7 @@ class SideBar extends StatelessWidget {
               final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProductRegisterPage(),
+                  builder: (context) => ProductRegistrationScreen(),
                 ),
               );
 

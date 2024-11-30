@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:panfit_app/screens/production/register/ProductionRequestScreen.dart';
-import 'package:panfit_app/screens/production/register/input_register.dart';
-import 'package:panfit_app/repository/item_repository.dart';
 import 'package:panfit_app/domain/item.dart';
+import 'package:panfit_app/domain/product.dart';
+import 'package:panfit_app/repository/item_repository.dart';
+import 'package:panfit_app/repository/product_repository.dart';
 
 class StockPage extends StatefulWidget {
   const StockPage({Key? key}) : super(key: key);
@@ -13,11 +14,13 @@ class StockPage extends StatefulWidget {
 
 class _StockPageState extends State<StockPage> {
   late Future<List<Item>> futureItems;
+  late Future<List<Product>> futureProducts;
 
   @override
   void initState() {
     super.initState();
-    futureItems = fetchItems(); // Inicializa a Future para obter os itens
+    futureItems = fetchItems(); // Inicializa a Future para obter os itens cadastrados
+    futureProducts = fetchProducts(); // Inicializa a Future para obter os produtos cadastrados
   }
 
   @override
@@ -36,35 +39,62 @@ class _StockPageState extends State<StockPage> {
             indicatorColor: Color(0xFF996536),
           ),
         ),
-        body: FutureBuilder<List<Item>>(
-          future: futureItems,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Erro ao carregar itens: ${snapshot.error}'));
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(child: Text('Nenhum item encontrado'));
-            }
+        body: TabBarView(
+          // Listagem dos ingredientes
+          children: [
+            FutureBuilder<List<Item>>(
+              future: futureItems,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Erro ao carregar ingredientes: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(child: Text('Nenhum ingrediente encontrado'));
+                }
 
-            final items = snapshot.data!;
-
-            return TabBarView(
-              children: [
-                ListView.builder(
+                final items = snapshot.data!;
+                return ListView.builder(
                   itemCount: items.length,
                   itemBuilder: (context, index) {
                     final item = items[index];
                     return ListTile(
                       title: Text(item.name),
                       subtitle: Text(item.category),
+                      trailing: Text('${item.wheight.toStringAsFixed(2)} kg'),
                     );
                   },
-                ),
-                Center(child: Text('Lista de produtos')), // Exemplo de outra aba
-              ],
-            );
-          },
+                );
+              },
+            ),
+
+            // Listagem dos produtos
+            FutureBuilder<List<Product>>(
+              future: futureProducts,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Erro ao carregar produtos: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(child: Text('Nenhum produto encontrado'));
+                }
+
+                final products = snapshot.data!;
+                return ListView.builder(
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    final product = products[index];
+                    return ListTile(
+                      title: Text(product.name),
+                      subtitle: Text(product.category),
+                      trailing: Text('${product.weight.toStringAsFixed(2)} kg'),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {

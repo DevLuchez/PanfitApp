@@ -4,7 +4,6 @@ class Product {
   final double weight;
   final String category;
   final String recipe;
-  final double salePrice;
 
   Product({
     required this.id,
@@ -12,18 +11,16 @@ class Product {
     required this.weight,
     required this.category,
     required this.recipe,
-    required this.salePrice,
   });
 
   // Método para converter de JSON para o modelo
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'],
-      name: json['name'],
-      weight: json['weight'],
-      category: json['category'],
-      recipe: json['recipe'],
-      salePrice: json['salePrice'],
+      id: json['id'] ?? '',
+      name: json['name'] ?? 'Desconhecido',
+      weight: (json['weight'] != null) ? json['weight'].toDouble() : 0.0,
+      category: json['category'] ?? 'Não categorizado',
+      recipe: json['recipe'] ?? '',
     );
   }
 
@@ -35,7 +32,6 @@ class Product {
       'weight': weight,
       'category': category,
       'recipe': recipe,
-      'salePrice': salePrice,
     };
   }
 }
@@ -45,14 +41,12 @@ class ProductDTO {
   final double weight;
   final String category;
   final String recipe;
-  final double salePrice;
 
   ProductDTO({
     required this.name,
     required this.weight,
     required this.category,
     required this.recipe,
-    required this.salePrice,
   });
 
   // Método para converter do modelo para JSON
@@ -62,7 +56,6 @@ class ProductDTO {
       'weight': weight,
       'category': category,
       'recipe': recipe,
-      'salePrice': salePrice,
     };
   }
 }

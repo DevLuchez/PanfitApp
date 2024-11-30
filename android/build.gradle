@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // A versão do AGP (Android Gradle Plugin) deve ser compatível com o Flutter
+        classpath 'com.android.tools.build:gradle:7.3.1'  // ou a versão que você está usando
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22' // Certifique-se de usar a versão Kotlin correta
+        classpath 'dev.flutter:flutter-gradle-plugin' // Flutter Gradle Plugin
+    }
+}
+
 allprojects {
     repositories {
         google()
