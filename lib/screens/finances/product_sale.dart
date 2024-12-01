@@ -118,12 +118,10 @@ class _ProductSaleState extends State<ProductSale> {
           _orderItems.add({
             'product': _selectedProduct!,
             'quantity': quantity,
-            // TODO - Quando o back aceitar o atributo de preço do produto, alterar para que este possa ser utilizado
-            //'subtotal': _selectedProduct!.sale_price * quantity,
-            'subtotal': 20.90 * quantity,
+            'subtotal': _selectedProduct!.sale_price * quantity,
           });
           _selectedProduct = null;
-          _searchController.clear();// TODO - Corrigir limpa da barra de pesquisa
+          _searchController.clear();
           _quantityController.clear();
           _autocompleteController?.clear();
           _errorMessage = null; // Limpar mensagem de erro

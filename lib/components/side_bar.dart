@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:panfit_app/screens/production/cooking.dart';
+import 'package:panfit_app/screens/production/register/ProductionRequestScreen.dart';
 import 'package:panfit_app/screens/production/register/product_register.dart';
 import 'package:panfit_app/screens/sign_in/login.dart';
 
@@ -26,15 +28,7 @@ class SideBar extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Página inicial'),
-            onTap: () {
-              Navigator.pop(context);
-              // Informar arquivo dart para direcionar usuário
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.egg_outlined),
+            leading: Icon(Icons.egg_outlined, color: Color(0xFF996536)),
             title: Text('Cadastro de ingredientes'),
             onTap: () async {
               // Navegar para a tela de cadastro de insumos
@@ -54,7 +48,7 @@ class SideBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.auto_stories),
+            leading: Icon(Icons.auto_stories, color: Color(0xFF996536)),
             title: Text('Cadastro de receitas'),
             onTap: () async {
               // Navegar para a tela de cadastro de insumos
@@ -74,7 +68,7 @@ class SideBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.egg_alt_outlined),
+            leading: Icon(Icons.egg_alt_outlined, color: Color(0xFF996536)),
             title: Text('Cadastro de produtos'),
             onTap: () async {
               // Navegar para a tela de cadastro de insumos
@@ -93,16 +87,16 @@ class SideBar extends StatelessWidget {
               }
             },
           ),
+          //ListTile(
+          //  leading: Icon(Icons.info),
+          //  title: Text('Suporte'),
+          //  onTap: () {
+          //    Navigator.pop(context);
+          //    // TODO - Navegar para a tela de suporte (formulário ou contato)
+          //  },
+          //),
           ListTile(
-            leading: Icon(Icons.info),
-            title: Text('Suporte'),
-            onTap: () {
-              Navigator.pop(context);
-              // TODO - Navegar para a tela de suporte (formulário ou contato)
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.logout),
+            leading: Icon(Icons.logout, color: Color(0xFF996536)),
             title: Text('Sair'),
             onTap: () {
               // TODO - Incluir lógica para logout do usuário
