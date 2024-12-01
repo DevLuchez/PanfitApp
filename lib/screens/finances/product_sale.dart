@@ -1,32 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:panfit_app/repository/product_repository.dart';
-
 import 'package:panfit_app/domain/product.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class ProductSale extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Panfit Caixa',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: CaixaScreen(),
-    );
-  }
+  _ProductSaleState createState() => _ProductSaleState();
 }
 
-class CaixaScreen extends StatefulWidget {
-  @override
-  _CaixaScreenState createState() => _CaixaScreenState();
-}
-
-class _CaixaScreenState extends State<CaixaScreen> {
+class _ProductSaleState extends State<ProductSale> {
   final TextEditingController _quantityController = TextEditingController();
   final TextEditingController _searchController = TextEditingController();
   TextEditingController? _autocompleteController; // Controlador para o campo do Autocomplete
@@ -160,7 +141,12 @@ class _CaixaScreenState extends State<CaixaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Caixa Panfit'),
+        title: Text('Venda de Produtos',
+          style: TextStyle(
+            color: Color(0xFF996536),
+            fontFamily: 'Poppins',
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -184,7 +170,7 @@ class _CaixaScreenState extends State<CaixaScreen> {
                                 .contains(textEditingValue.text.toLowerCase());
                           });
                         },
-                        displayStringForOption: (Product product) => '${product.name} (R\$20.90)',
+                        displayStringForOption: (Product product) => product.name,
                         onSelected: (Product product) {
                           setState(() {
                             _selectedProduct = product;
@@ -197,19 +183,45 @@ class _CaixaScreenState extends State<CaixaScreen> {
                           textEditingController.addListener(() {
                             _searchController.text = textEditingController.text;
                           });
-                          return TextField(
-                            controller: textEditingController,
-                            focusNode: focusNode,
-                            decoration: InputDecoration(
-                              labelText: 'Buscar produto',
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.search),
+                          return Container(
+                            width: 360,
+                            child: TextField(
+                              controller: textEditingController,
+                              focusNode: focusNode,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                    Icons.search,
+                                    color: Color(0xFF996536)
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFF4E9DA),
+                                labelText: 'Buscar produtos',
+                                labelStyle: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    color: Color(0xFF996536)
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Color(0xFF996536),
+                                    width: 1.0,
+                                  ),
+                                ),
+                              ),
+                              onChanged: (_) {
+                                setState(() {
+                                  _errorMessage = null; // Limpar erro ao digitar
+                                });
+                              },
                             ),
-                            onChanged: (_) {
-                              setState(() {
-                                _errorMessage = null; // Limpar erro ao digitar
-                              });
-                            },
                           );
                         },
                       ),
@@ -221,7 +233,27 @@ class _CaixaScreenState extends State<CaixaScreen> {
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           labelText: 'Quantidade',
-                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Color(0xFFF4E9DA),
+                          labelStyle: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Color(0xFF996536)
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Color(0xFF996536),
+                              width: 1.0,
+                            ),
+                          ),
                         ),
                         onChanged: (_) {
                           setState(() {
@@ -233,7 +265,20 @@ class _CaixaScreenState extends State<CaixaScreen> {
                     SizedBox(width: 10),
                     ElevatedButton(
                       onPressed: _isAddButtonEnabled ? _addProductToOrder : null,
-                      child: Text('Adicionar'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF996536),
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: Text(
+                        'Adicionar',
+                        style: TextStyle(
+                            fontFamily: 'Poppins'
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -242,7 +287,10 @@ class _CaixaScreenState extends State<CaixaScreen> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       _errorMessage!,
-                      style: TextStyle(color: Colors.red, fontSize: 14),
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          color: Colors.red,
+                          fontSize: 14),
                     ),
                   ),
               ],
@@ -261,7 +309,7 @@ class _CaixaScreenState extends State<CaixaScreen> {
                   title: Text('${product.name} (x$quantity)'),
                   subtitle: Text('Subtotal: R\$ ${subtotal.toStringAsFixed(2).replaceAll('.', ',')}'),
                   trailing: IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: Icon(Icons.delete, color: Color(0xFFE07B74),),
                     onPressed: () {
                       setState(() {
                         _orderItems.removeAt(index);
@@ -289,13 +337,31 @@ class _CaixaScreenState extends State<CaixaScreen> {
               children: [
                 Text(
                   'Total: R\$ ${_getTotalPrice().toStringAsFixed(2).replaceAll('.', ',')}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Color(0xFF528533),
+                    fontFamily: 'Poppins',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     setState(() => _orderItems.clear());
                   },
-                  child: Text('Finalizar Pedido'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF528533),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: Text(
+                    'Finalizar Venda',
+                    style: TextStyle(
+                        fontFamily: 'Poppins'
+                    ),
+                  ),
                 ),
               ],
             ),

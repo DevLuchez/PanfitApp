@@ -45,9 +45,9 @@ class _CookingPageState extends State<CookingPage> {
                 Tab(text: 'Em produção'),
                 Tab(text: 'Concluídos'),
               ],
-              indicatorColor: Colors.brown, // Personalize a cor do indicador
-              labelColor: Colors.black,      // Cor do texto selecionado
-              unselectedLabelColor: Colors.grey, // Cor do texto não selecionado
+              labelColor: Color(0xFF996536),
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Color(0xFF996536),
             ),
             Expanded(
               child: TabBarView(

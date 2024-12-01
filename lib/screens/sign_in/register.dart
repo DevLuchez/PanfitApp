@@ -54,7 +54,7 @@ class RegisterPage extends StatelessWidget {
                       filled: true,
                       fillColor: Color(0xFFF4E9DA),
                       labelText: 'E-mail',
-                      labelStyle: TextStyle(color: Color(0xFF996536)),
+                      labelStyle: TextStyle(fontFamily: 'Poppins',color: Color(0xFF996536)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
@@ -83,7 +83,7 @@ class RegisterPage extends StatelessWidget {
                       filled: true,
                       fillColor: Color(0xFFF4E9DA),
                       labelText: 'Senha',
-                      labelStyle: TextStyle(color: Color(0xFF996536)),
+                      labelStyle: TextStyle(fontFamily: 'Poppins',color: Color(0xFF996536)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
@@ -112,7 +112,7 @@ class RegisterPage extends StatelessWidget {
                       filled: true,
                       fillColor: Color(0xFFF4E9DA),
                       labelText: 'Confirmar senha',
-                      labelStyle: TextStyle(color: Color(0xFF996536)),
+                      labelStyle: TextStyle(fontFamily: 'Poppins',color: Color(0xFF996536)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,

@@ -3,7 +3,7 @@ import 'production/orders.dart';
 import 'production/cooking.dart';
 import 'production/stock.dart';
 import 'finances/finances.dart';
-import 'finances/caixaScreen.dart';
+import 'finances/product_sale.dart';
 import 'package:panfit_app/components/side_bar.dart';
 
 class UserMainScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class _UserMainScreenState extends State<UserMainScreen> {
   int _selectedIndex = 3;
 
   static List<Widget> _pages = <Widget>[
-    CaixaScreen(),
+    ProductSale(),
     FinancesScreen(),
     OrdersPage(),
     CookingPage(),

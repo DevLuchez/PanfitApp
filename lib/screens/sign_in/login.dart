@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   filled: true,
                   fillColor: Color(0xFFF4E9DA),
                   labelText: 'Usuário',
-                  labelStyle: TextStyle(color: Color(0xFF996536)),
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                   filled: true,
                   fillColor: Color(0xFFF4E9DA),
                   labelText: 'Senha',
-                  labelStyle: TextStyle(color: Color(0xFF996536)),
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                   'Lembrar senha',
                   style: TextStyle(
                     fontSize: 17,
-                    color: Colors.brown,
+                    color: Color(0xFF996536),
                     fontFamily: 'Poppins',
                   ),
                 ),

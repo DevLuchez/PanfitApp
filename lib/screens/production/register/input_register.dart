@@ -62,7 +62,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                 filled: true,
                 fillColor: Color(0xFFF4E9DA),
                 labelText: 'Nome do insumo',
-                labelStyle: TextStyle(color: Color(0xFF996536)),
+                labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -89,7 +89,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                 filled: true,
                 fillColor: Color(0xFFF4E9DA),
                 labelText: 'GTIN',
-                labelStyle: TextStyle(color: Color(0xFF996536)),
+                labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -106,7 +106,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                 filled: true,
                 fillColor: Color(0xFFF4E9DA),
                 labelText: 'Peso',
-                labelStyle: TextStyle(color: Color(0xFF996536)),
+                labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -123,7 +123,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                 filled: true,
                 fillColor: Color(0xFFF4E9DA),
                 labelText: 'Quantidade',
-                labelStyle: TextStyle(color: Color(0xFF996536)),
+                labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,

@@ -19,6 +19,7 @@ class SideBar extends StatelessWidget {
             child: Text(
               'Panfit Menu',
               style: TextStyle(
+                fontFamily: 'Poppins',
                 color: Colors.white,
                 fontSize: 24,
               ),

@@ -60,7 +60,7 @@ class DiarioTab extends StatelessWidget {
     return Center(
       child: Text(
         'Total de vendas: 1587,25',
-        style: TextStyle(fontSize: 24),
+        style: TextStyle(fontFamily: 'Poppins', fontSize: 24),
       ),
     );
   }
@@ -72,7 +72,7 @@ class MensalTab extends StatelessWidget {
     return Center(
       child: Text(
         'Total de vendas: 1587,25',
-        style: TextStyle(fontSize: 24),
+        style: TextStyle(fontFamily: 'Poppins', fontSize: 24),
       ),
     );
   }
@@ -84,7 +84,7 @@ class AnualTab extends StatelessWidget {
     return Center(
       child: Text(
         'Total de vendas: 1587,25',
-        style: TextStyle(fontSize: 24),
+        style: TextStyle(fontFamily: 'Poppins', fontSize: 24),
       ),
     );
   }

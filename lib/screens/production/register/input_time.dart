@@ -93,7 +93,7 @@ class _InputTimeState extends State<InputTime> with SingleTickerProviderStateMix
             SizedBox(height: 20),
             Text(
               'Tempo: ${formatDuration(durationInMinutes * 60)}', // Converte minutos para segundos para exibir
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(fontFamily: 'Poppins', fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Row(
@@ -138,11 +138,11 @@ class _InputTimeState extends State<InputTime> with SingleTickerProviderStateMix
                           children: [
                             Text(
                               formatDuration((durationInMinutes * 60 * _controller.value).toInt()), // Converte para segundos
-                              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontFamily: 'Poppins', fontSize: 24, fontWeight: FontWeight.bold),
                             ),
                             Text(
                               '${(_controller.value * 100).toStringAsFixed(0)}%',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontFamily: 'Poppins', fontSize: 16),
                             ),
                           ],
                         ),

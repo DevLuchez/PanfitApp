@@ -26,12 +26,11 @@ class OrdersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''
-            'Pedidos para produzir',
-        style: TextStyle(
-          color: Colors.brown,
-          fontFamily: 'Poppins',
-        ),
+        title: Text('Pedidos a produzir',
+          style: TextStyle(
+            color: Color(0xFF996536),
+            fontFamily: 'Poppins',
+          ),
         ),
 
       ),
