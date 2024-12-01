@@ -27,9 +27,11 @@ class _StockPageState extends State<StockPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
+      child: Scaffold(appBar: AppBar(
+        automaticallyImplyLeading: false, // Opcional: Evita que o botão de voltar apareça automaticamente
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),  // Ajuste o tamanho conforme necessário
+          child: TabBar(
             tabs: [
               Tab(text: 'Ingredientes'),
               Tab(text: 'Produtos'),
@@ -39,6 +41,8 @@ class _StockPageState extends State<StockPage> {
             indicatorColor: Color(0xFF996536),
           ),
         ),
+      ),
+
         body: TabBarView(
           // Listagem dos ingredientes
           children: [

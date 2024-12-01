@@ -1,70 +1,56 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-
-import '../../util/OrderClass.dart';
+import 'package:http/http.dart' as http;
 
 class InputTime extends StatefulWidget {
-  final OrderClass order;
+  final String id;
+  final String name;
 
-  InputTime({required this.order});
+  InputTime({required this.id, required this.name});
 
   @override
   _InputTimeState createState() => _InputTimeState();
 }
 
-class _InputTimeState extends State<InputTime> with SingleTickerProviderStateMixin {
-  int durationInMinutes = 0;
+class _InputTimeState extends State<InputTime> {
   bool isRunning = false;
-  late AnimationController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(minutes: durationInMinutes),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void startTimer() {
+  Future<void> _updateProductionStatus() async {
     setState(() {
       isRunning = true;
-      _controller.duration = Duration(minutes: durationInMinutes);
-      _controller.reverse(from: 1.0);
     });
 
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.dismissed) {
+    try {
+      final url = Uri.parse("http://localhost:8083/production/${widget.id}");
+      final response = await http.put(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"status": "em_producao"}),
+      );
+
+      if (response.statusCode == 200) {
+        if (mounted) {
+          Navigator.pop(context, "Produção iniciada para ${widget.name}");
+        }
+      } else {
         setState(() {
           isRunning = false;
         });
+        _showErrorSnackbar("Falha ao atualizar o status: ${response.statusCode}");
       }
-    });
+    } catch (e) {
+      setState(() {
+        isRunning = false;
+      });
+      _showErrorSnackbar("Erro: $e");
+    }
   }
 
-  String formatDuration(int totalSeconds) {
-    int minutes = totalSeconds ~/ 60;
-    int seconds = totalSeconds % 60;
-    return '${minutes.toString().padLeft(2, '0')}min ${seconds.toString().padLeft(2, '0')}seg';
-  }
-
-  void incrementDuration() {
-    setState(() {
-      durationInMinutes++;
-    });
-  }
-
-  void decrementDuration() {
-    setState(() {
-      if (durationInMinutes > 0) {
-        durationInMinutes--;
-      }
-    });
+  void _showErrorSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message, style: TextStyle(color: Colors.white))),
+    );
   }
 
   @override
@@ -72,88 +58,38 @@ class _InputTimeState extends State<InputTime> with SingleTickerProviderStateMix
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Iniciar produção',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-          ),
+          'Iniciar Produção',
+          style: TextStyle(fontFamily: 'Poppins'),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Center(
-              child: Image.asset(
-                widget.order.imageUrl,
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover,
+      body: Center( // Envolve o Column com Center para centralizar o conteúdo
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Garante que o conteúdo seja ajustado verticalmente
+            children: [
+              Text(
+                '${widget.name}',
+                style: TextStyle(fontSize: 20), // Remove o fontWeight.bold
               ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Tempo: ${formatDuration(durationInMinutes * 60)}', // Converte minutos para segundos para exibir
-              style: TextStyle(fontFamily: 'Poppins', fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.remove),
-                  onPressed: decrementDuration,
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: isRunning ? null : _updateProductionStatus,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 ),
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: incrementDuration,
+                child: isRunning
+                    ? CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.brown),
+                )
+                    : Text(
+                  'Iniciar Produção',
+                  style: TextStyle(fontSize: 18, color: Colors.brown),
                 ),
-              ],
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: isRunning ? null : startTimer,
-              child: Text(isRunning ? 'Em execução...' : 'Iniciar'),
-            ),
-            SizedBox(height: 20),
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        SizedBox(
-                          width: 200,
-                          height: 200,
-                          child: CircularProgressIndicator(
-                            value: _controller.value,
-                            strokeWidth: 8.0,
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-                            backgroundColor: Colors.grey[200],
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              formatDuration((durationInMinutes * 60 * _controller.value).toInt()), // Converte para segundos
-                              style: TextStyle(fontFamily: 'Poppins', fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              '${(_controller.value * 100).toStringAsFixed(0)}%',
-                              style: TextStyle(fontFamily: 'Poppins', fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-              },
-            ),
-            Spacer(),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -62,7 +62,7 @@ class _ProductionRequestScreenState extends State<ProductionRequestScreen> {
       });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        _showSuccessDialog('Production request submitted successfully.');
+        _showSuccessDialog('Requisição de produção enviada para a cozinha.');
       } else {
         _showErrorDialog('Failed to submit production request.');
       }
@@ -94,7 +94,7 @@ class _ProductionRequestScreenState extends State<ProductionRequestScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Success'),
+        title: Text('Sucesso'),
         content: Text(message),
         actions: [
           TextButton(
