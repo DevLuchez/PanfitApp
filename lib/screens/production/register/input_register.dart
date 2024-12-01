@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../domain/item.dart';
-import '../../../repository/item_repository.dart';
+import 'package:panfit_app/domain/item.dart';
+import 'package:panfit_app/repository/item_repository.dart';
 import 'ProductionRequestScreen.dart';
 
 class InputRegisterPage extends StatefulWidget {
@@ -14,6 +14,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
   final _nameController = TextEditingController();
   final _gtinController = TextEditingController();
   final _weightController = TextEditingController();
+  final _quantityController = TextEditingController();
   String _selectedCategory = '';
 
   @override
@@ -114,6 +115,23 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
             ),
             SizedBox(height: 20),
 
+            // Campo Quantidade
+            TextField(
+              controller: _quantityController, // Controlador de quantidade
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFF4E9DA),
+                labelText: 'Quantidade',
+                labelStyle: TextStyle(color: Color(0xFF996536)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+
             // Campo Categoria
             DropdownButton<String>(
               value: _selectedCategory.isEmpty ? null : _selectedCategory,
@@ -181,12 +199,14 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                     if (_nameController.text.isNotEmpty &&
                         _gtinController.text.isNotEmpty &&
                         _weightController.text.isNotEmpty &&
+                        _quantityController.text.isNotEmpty &&
                         _selectedCategory.isNotEmpty) {
                       try {
                         final itemDTO = ItemDTO(
                           name: _nameController.text,
                           GTIN: _gtinController.text,
                           wheight: double.tryParse(_weightController.text) ?? 0.0,
+                          quantity: int.tryParse(_quantityController.text) ?? 1,
                           category: _selectedCategory,
                         );
 

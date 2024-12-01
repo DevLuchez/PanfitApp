@@ -12,7 +12,7 @@ class UserMainScreen extends StatefulWidget {
 }
 
 class _UserMainScreenState extends State<UserMainScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
 
   static List<Widget> _pages = <Widget>[
     CaixaScreen(),

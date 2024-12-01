@@ -93,22 +93,6 @@ class SideBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.bookmark),
-            title: Text('Cadastro de categorias'),
-            onTap: () {
-              Navigator.pop(context);
-              // TODO - Navegar para a tela de cadastro de categorias
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Configurações'),
-            onTap: () {
-              Navigator.pop(context);
-              // TODO - Navegar para a tela de configurações do app
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.info),
             title: Text('Suporte'),
             onTap: () {

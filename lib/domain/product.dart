@@ -36,6 +36,8 @@ class Product {
   }
 }
 
+
+
 class ProductDTO {
   final String name;
   final double wheight;

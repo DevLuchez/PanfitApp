@@ -14,7 +14,7 @@ class ProductEditPage extends StatefulWidget {
 class _ProductEditPageState extends State<ProductEditPage> {
   final _formKey = GlobalKey<FormState>();
   late String name;
-  late double weight;
+  late double wheight;
   late String category;
   late String receipe;
 
@@ -23,7 +23,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
     super.initState();
     // Inicializa os campos com os dados do produto passado
     name = widget.product.name;
-    weight = widget.product.wheight;
+    wheight = widget.product.wheight;
     category = widget.product.category;
     receipe = widget.product.recipe;
   }
@@ -35,7 +35,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
         'http://localhost:8083/product/${widget.product.id}',
         data: {
           'name': name,
-          'weight': weight,
+          'wheight': wheight,
           'category': category,
           'receipe': receipe,
         },
@@ -78,10 +78,10 @@ class _ProductEditPageState extends State<ProductEditPage> {
                 },
               ),
               TextFormField(
-                initialValue: weight.toString(),
+                initialValue: wheight.toString(),
                 decoration: InputDecoration(labelText: 'Peso'),
                 keyboardType: TextInputType.number,
-                onChanged: (value) => weight = double.tryParse(value) ?? 0,
+                onChanged: (value) => wheight = double.tryParse(value) ?? 0,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Peso é obrigatório';

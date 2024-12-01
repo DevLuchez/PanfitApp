@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Seja',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 20,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Poppins',
               ),
@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
 
             // Campo de Lembrar Senha
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Checkbox(
                   value: _rememberMe,

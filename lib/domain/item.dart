@@ -1,8 +1,10 @@
+// Rebendo dados do backedn
 class Item { // Get, Update e Delete
   final String id; // id do banco
   final String name;
   final String GTIN; // id global do insumo
   final double wheight;
+  final double stock_wheight;
   final String category;
 
   const Item({
@@ -11,6 +13,7 @@ class Item { // Get, Update e Delete
     required this.GTIN,
     required this.wheight,
     required this.category,
+    required this.stock_wheight,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) {
@@ -20,6 +23,7 @@ class Item { // Get, Update e Delete
       GTIN: json['GTIN'],
       wheight: json['wheight'],
       category: json['category'],
+      stock_wheight: json['stock_wheight'],
     );
   }
 
@@ -31,21 +35,25 @@ class Item { // Get, Update e Delete
       'GTIN': GTIN,
       'wheight': wheight,
       'category': category,
+      'stock_wheight': stock_wheight,
     };
   }
 }
 
+// Enviando dados do backend
 class ItemDTO { // Create
   final String name;
   final String GTIN; // id global do insumo
   final double wheight;
   final String category;
+  final int quantity;
 
   const ItemDTO({
     required this.name,
     required this.GTIN,
     required this.wheight,
     required this.category,
+    required this.quantity,
   });
 
   factory ItemDTO.fromJson(Map<String, dynamic> json) {
@@ -54,6 +62,7 @@ class ItemDTO { // Create
       GTIN: json['GTIN'],
       wheight: json['wheight'],
       category: json['category'],
+      quantity: json['quantity'],
     );
   }
 
@@ -64,6 +73,7 @@ class ItemDTO { // Create
       'GTIN': GTIN,
       'wheight': wheight,
       'category': category,
+      'quantity': quantity,
     };
   }
 }
