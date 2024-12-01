@@ -3,14 +3,14 @@ class Product {
   final String name;
   final double wheight;
   final String category;
-  final String receipe;
+  final String recipe;
 
   Product({
     required this.id,
     required this.name,
     required this.wheight,
     required this.category,
-    required this.receipe,
+    required this.recipe,
   });
 
   // Método para converter de JSON para o modelo
@@ -20,7 +20,7 @@ class Product {
       name: json['name'] ?? 'Desconhecido',
       wheight: (json['wheight'] != null) ? json['wheight'].toDouble() : 0.0,
       category: json['category'] ?? 'Não categorizado',
-      receipe: json['receipe'] ?? '',
+      recipe: json['recipe'] ?? '',
     );
   }
 
@@ -31,7 +31,7 @@ class Product {
       'name': name,
       'wheight': wheight,
       'category': category,
-      'receipe': receipe,
+      'recipe': recipe,
     };
   }
 }
@@ -40,13 +40,13 @@ class ProductDTO {
   final String name;
   final double wheight;
   final String category;
-  final String receipe;
+  final String recipe;
 
   ProductDTO({
     required this.name,
     required this.wheight,
     required this.category,
-    required this.receipe,
+    required this.recipe,
   });
 
   // Método para converter do modelo para JSON
@@ -55,7 +55,7 @@ class ProductDTO {
       'name': name,
       'wheight': wheight,
       'category': category,
-      'receipe': receipe,
+      'recipe': recipe,
     };
   }
 }

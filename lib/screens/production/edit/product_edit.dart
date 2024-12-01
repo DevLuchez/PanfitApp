@@ -25,7 +25,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
     name = widget.product.name;
     weight = widget.product.wheight;
     category = widget.product.category;
-    receipe = widget.product.receipe;
+    receipe = widget.product.recipe;
   }
 
   Future<void> updateProduct() async {
