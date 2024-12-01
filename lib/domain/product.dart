@@ -1,16 +1,16 @@
 class Product {
   final String id;
   final String name;
-  final double weight;
+  final double wheight;
   final String category;
-  final String recipe;
+  final String receipe;
 
   Product({
     required this.id,
     required this.name,
-    required this.weight,
+    required this.wheight,
     required this.category,
-    required this.recipe,
+    required this.receipe,
   });
 
   // Método para converter de JSON para o modelo
@@ -18,9 +18,9 @@ class Product {
     return Product(
       id: json['id'] ?? '',
       name: json['name'] ?? 'Desconhecido',
-      weight: (json['weight'] != null) ? json['weight'].toDouble() : 0.0,
+      wheight: (json['wheight'] != null) ? json['wheight'].toDouble() : 0.0,
       category: json['category'] ?? 'Não categorizado',
-      recipe: json['recipe'] ?? '',
+      receipe: json['receipe'] ?? '',
     );
   }
 
@@ -29,33 +29,33 @@ class Product {
     return {
       'id': id,
       'name': name,
-      'weight': weight,
+      'wheight': wheight,
       'category': category,
-      'recipe': recipe,
+      'receipe': receipe,
     };
   }
 }
 
 class ProductDTO {
   final String name;
-  final double weight;
+  final double wheight;
   final String category;
-  final String recipe;
+  final String receipe;
 
   ProductDTO({
     required this.name,
-    required this.weight,
+    required this.wheight,
     required this.category,
-    required this.recipe,
+    required this.receipe,
   });
 
   // Método para converter do modelo para JSON
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'weight': weight,
+      'wheight': wheight,
       'category': category,
-      'recipe': recipe,
+      'receipe': receipe,
     };
   }
 }

@@ -88,7 +88,7 @@ class _StockPageState extends State<StockPage> {
                     return ListTile(
                       title: Text(product.name),
                       subtitle: Text(product.category),
-                      trailing: Text('${product.weight.toStringAsFixed(2)} kg'),
+                      trailing: Text('${product.wheight.toStringAsFixed(2)} kg'),
                     );
                   },
                 );
