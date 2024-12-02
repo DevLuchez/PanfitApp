@@ -118,7 +118,7 @@ class _ProductSaleState extends State<ProductSale> {
         'payment_type': _selectedPaymentType,
       });
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         setState(() {
           _orderItems.clear();
           _errorMessage = null;
