@@ -80,7 +80,7 @@ class DiarioTab extends StatelessWidget {
                     'Faturamos',
                     style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 25,
+                        fontSize: 15,
                     ),
                   ),
                   SizedBox(height: 4),
@@ -88,7 +88,7 @@ class DiarioTab extends StatelessWidget {
                     'R\$${totalSaleValueToday.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 45,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF528533),
                     ),
@@ -104,7 +104,7 @@ class DiarioTab extends StatelessWidget {
                     'Lucramos',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 25,
+                      fontSize: 15,
                     ),
                   ),
                   SizedBox(height: 4),
@@ -112,7 +112,7 @@ class DiarioTab extends StatelessWidget {
                     'R\$${lucroDiferenca.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 45,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF528533),
                     ),
@@ -120,76 +120,6 @@ class DiarioTab extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-          SizedBox(height: 30),
-
-          // Gráficos de pizza
-          Expanded(
-            child: Row(
-              children: [
-                // Gráfico de Pizza - Categorias Vendidas
-                Expanded(
-                  child: PieChart(
-                    PieChartData(
-                      sections: categories.map((entry) {
-                        return PieChartSectionData(
-                          value: entry['value'].toDouble(),
-                          color: entry['color'],
-                          title: '${entry['label']} (${entry['value']}%)',
-                          radius: 50,
-                          titlePositionPercentageOffset: 1.2, // Controla a posição do título
-                          titleStyle: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
-                        );
-                      }).toList(),
-                      sectionsSpace: 2, // Espaçamento entre as fatias
-                      centerSpaceRadius: 40, // Espaço central (se necessário)
-                      pieTouchData: PieTouchData(
-                        touchCallback: (event, response) {
-                          if (response != null && response.touchedSection != null) {
-                            final touchedIndex = response.touchedSection!.touchedSectionIndex;
-                            print('Fatias tocadas: ${categories[touchedIndex]['label']}');
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-
-                // Gráfico de Pizza - Formas de Pagamento
-                Expanded(
-                  child: PieChart(
-                    PieChartData(
-                      sections: payment_methods.map((entry) {
-                        return PieChartSectionData(
-                          value: entry['value'].toDouble(),
-                          color: entry['color'],
-                          title: '${entry['label']} (${entry['value']}%)',
-                          radius: 50,
-                          titlePositionPercentageOffset: 1.2, // Controla a posição do título
-                          titleStyle: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
-                        );
-                      }).toList(),
-                      sectionsSpace: 2, // Espaçamento entre as fatias
-                      centerSpaceRadius: 40, // Espaço central (se necessário)
-                      pieTouchData: PieTouchData(
-                        touchCallback: (event, response) {
-                          if (response != null && response.touchedSection != null) {
-                            final touchedIndex = response.touchedSection!.touchedSectionIndex;
-                            print('Fatias tocadas: ${payment_methods[touchedIndex]['label']}');
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
           SizedBox(height: 30),
 
@@ -201,19 +131,19 @@ class DiarioTab extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 70),
           Expanded(
             child: BarChart(
               BarChartData(
                 alignment: BarChartAlignment.spaceEvenly,
-                maxY: totalSaleValueToday > totalSaleValueYesterday ? totalSaleValueToday : totalSaleValueYesterday,
+                maxY: (totalSaleValueToday > totalSaleValueYesterday ? totalSaleValueToday : totalSaleValueYesterday),
                 barGroups: [
                   BarChartGroupData(
                     x: 0,
                     barRods: [
                       BarChartRodData(
                         toY: totalSaleValueYesterday,
-                        color: Color(0xFFC4A580),
+                        color: Color(0xFFD3B300),
                       ),
                     ],
                     showingTooltipIndicators: [0],
@@ -223,7 +153,7 @@ class DiarioTab extends StatelessWidget {
                     barRods: [
                       BarChartRodData(
                         toY: totalSaleValueToday,
-                        color: Color(0xFFAA7845),
+                        color: Color(0xFF528533),
                       ),
                     ],
                     showingTooltipIndicators: [0],
