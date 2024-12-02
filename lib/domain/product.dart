@@ -5,6 +5,7 @@ class Product {
   final String category;
   final String recipe;
   final double sale_price;
+  final double stock_wheight;
 
   Product({
     required this.id,
@@ -13,6 +14,8 @@ class Product {
     required this.category,
     required this.recipe,
     required this.sale_price,
+    required this.stock_wheight,
+
   });
 
   // Método para converter de JSON para o modelo
@@ -24,6 +27,8 @@ class Product {
       category: json['category'] ?? 'Não categorizado',
       recipe: json['recipe'] ?? '',
       sale_price: (json['sale_price'] != null) ? json['sale_price'].toDouble() : 0.0,
+      stock_wheight: (json['stock_wheight'] != null) ? json['stock_wheight'].toDouble() : 0.0,
+
     );
   }
 

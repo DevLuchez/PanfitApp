@@ -27,22 +27,22 @@ class _StockPageState extends State<StockPage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(appBar: AppBar(
-        automaticallyImplyLeading: false, // Opcional: Evita que o botão de voltar apareça automaticamente
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(50.0),  // Ajuste o tamanho conforme necessário
-          child: TabBar(
-            tabs: [
-              Tab(text: 'Ingredientes'),
-              Tab(text: 'Produtos'),
-            ],
-            labelColor: Color(0xFF996536),
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: Color(0xFF996536),
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false, // Opcional: Evita que o botão de voltar apareça automaticamente
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(50.0), // Ajuste o tamanho conforme necessário
+            child: TabBar(
+              tabs: [
+                Tab(text: 'Ingredientes'),
+                Tab(text: 'Produtos'),
+              ],
+              labelColor: Color(0xFF996536),
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Color(0xFF996536),
+            ),
           ),
         ),
-      ),
-
         body: TabBarView(
           // Listagem dos ingredientes
           children: [
@@ -62,10 +62,11 @@ class _StockPageState extends State<StockPage> {
                   itemCount: items.length,
                   itemBuilder: (context, index) {
                     final item = items[index];
+                    final int unitValue = (item.stock_wheight / item.wheight).truncate();
                     return ListTile(
                       title: Text(item.name),
                       subtitle: Text(item.category),
-                      trailing: Text('${item.wheight.toStringAsFixed(2)} kg'),
+                      trailing: Text('Quantidade: $unitValue'),
                     );
                   },
                 );
@@ -89,10 +90,11 @@ class _StockPageState extends State<StockPage> {
                   itemCount: products.length,
                   itemBuilder: (context, index) {
                     final product = products[index];
+                    final int unitValue = (product.stock_wheight / product.wheight).truncate();
                     return ListTile(
                       title: Text(product.name),
                       subtitle: Text(product.category),
-                      trailing: Text('${product.wheight.toStringAsFixed(2)} kg'),
+                      trailing: Text('Valor unitário: $unitValue'),
                     );
                   },
                 );
