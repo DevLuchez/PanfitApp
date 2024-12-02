@@ -81,6 +81,32 @@ class _CookingPageState extends State<CookingPage> {
     }
   }
 
+  Future<void> _finalizeProduction(String id) async {
+    try {
+      final response = await http.post(
+        Uri.parse("http://localhost:8083/production/$id/finalize"),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"status": "produzido"}),
+      );
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Produto finalizado com sucesso!")),
+        );
+        _fetchOrders();
+      } else {
+        throw Exception("Falha ao atualizar o status: ${response.statusCode}");
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Erro: $e")),
+      );
+      _fetchOrders(); // Atualiza a lista após a mudança
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -121,7 +147,7 @@ class _CookingPageState extends State<CookingPage> {
                     subtitle: Text('Quantidade: ${order.quantity}'),
                     trailing: ElevatedButton(
                       onPressed: () {
-                        _updateOrderStatus(order.id);
+                        _finalizeProduction(order.id);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF996536),
