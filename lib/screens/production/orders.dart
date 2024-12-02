@@ -56,7 +56,7 @@ class _OrdersPageState extends State<OrdersPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Pedidos a produzir',
+          'Solicitações de Produção',
           style: TextStyle(
             color: Color(0xFF996536),
             fontFamily: 'Poppins',

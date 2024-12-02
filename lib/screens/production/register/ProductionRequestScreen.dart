@@ -62,7 +62,7 @@ class _ProductionRequestScreenState extends State<ProductionRequestScreen> {
       });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        _showSuccessDialog('Requisição de produção enviada para a cozinha.');
+        _showSuccessDialog('Solicitação de produção enviada para a cozinha.');
       } else {
         _showErrorDialog('Failed to submit production request.');
       }
@@ -110,7 +110,7 @@ class _ProductionRequestScreenState extends State<ProductionRequestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Requisição de produção'),
+        title: Text('Solicitação de produção'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
