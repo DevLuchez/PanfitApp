@@ -330,14 +330,14 @@ class _ProductSaleState extends State<ProductSale> {
                       fontFamily: 'Poppins',
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF996536),
+                      color: Color(0xFF528533),
                     ),
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: _submitSale,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF996536),
+                      backgroundColor: Color(0xFF528533),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     ),
                     child: Text(

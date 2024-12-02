@@ -69,8 +69,25 @@ class _InputReceipeState extends State<InputReceipe> {
               TextFormField(
                 controller: _categoryController,
                 decoration: InputDecoration(
-                  labelText: 'Nome',
-                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Color(0xFFF4E9DA),
+                  labelText: 'Nome da receita',
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color(0xFF996536),
+                      width: 1.0,
+                    ),
+                  ),
                 ),
                 onChanged: (value) {
                   setState(() {
@@ -118,10 +135,14 @@ class _InputReceipeState extends State<InputReceipe> {
 
               // Botão de salvar receita
               ElevatedButton.icon(
-                icon: Icon(Icons.save),
                 label: Text('Salvar Receita'),
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.brown, backgroundColor: Colors.white, // Cor do texto e ícone
+                  backgroundColor: Color(0xFF996536),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12), // Ajustes de padding
                 ),
                 onPressed: _submitReceipe,

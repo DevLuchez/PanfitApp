@@ -131,8 +131,25 @@ class _ProductionRequestScreenState extends State<ProductionRequestScreen> {
                 });
               },
               decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFF4E9DA),
                 labelText: 'Selecione o produto',
-                border: OutlineInputBorder(),
+                labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Color(0xFF996536),
+                    width: 1.0,
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 16),
@@ -140,16 +157,45 @@ class _ProductionRequestScreenState extends State<ProductionRequestScreen> {
               controller: _quantityController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFF4E9DA),
                 labelText: 'Quantidade',
-                border: OutlineInputBorder(),
+                labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Color(0xFF996536),
+                    width: 1.0,
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _isSubmitting ? null : _submitProductionRequest,
-              child: _isSubmitting
-                  ? CircularProgressIndicator(color: Color(0xFF996536))
-                  : Text('Enviar'),
+            Container(
+              width: 150,
+              child: ElevatedButton(
+                onPressed: _isSubmitting ? null : _submitProductionRequest,
+                child: _isSubmitting
+                    ? CircularProgressIndicator(color: Color(0xFF996536))
+                    : Text('Enviar'),
+
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF996536),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

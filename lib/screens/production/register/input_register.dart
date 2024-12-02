@@ -24,19 +24,11 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Cadastro de Insumos',
+          'Cadastro de Ingredientes',
           style: TextStyle(
             fontFamily: 'Poppins',
           ),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Color(0xFFAA7845),
-        ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: Padding(
@@ -164,7 +156,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                   icon: Icon(Icons.delete, color: Colors.white),
                   label: Text(''),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[300],
+                    backgroundColor: Color(0xFFE07B74),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -182,8 +174,8 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                       ),
                     );
                   },
-                  icon: Icon(Icons.qr_code_scanner, color: Colors.black),
-                  label: Text('Código de Barras'),
+                  icon: Icon(Icons.qr_code_scanner, color: Colors.white),
+                  label: Text('Código de Barras', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFAA7845),
                     shape: RoundedRectangleBorder(
@@ -234,7 +226,7 @@ class _InputRegisterPageState extends State<InputRegisterPage> {
                     }
                   },
                   icon: Icon(Icons.save, color: Colors.black),
-                  label: Text('Salvar'),
+                  label: Text('Salvar', style: TextStyle(color: Colors.black)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFB8FF8A),
                     shape: RoundedRectangleBorder(

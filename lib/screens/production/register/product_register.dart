@@ -104,38 +104,152 @@ class _ProductRegistrationScreenState extends State<ProductRegistrationScreen> {
           key: _formKey,
           child: ListView(
             children: [
+
+              // Campo Nome do produto
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: 'Nome do Produto'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFF4E9DA),
+                  labelText: 'Nome do produto',
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color(0xFF996536),
+                      width: 1.0,
+                    ),
+                  ),
+                ),
                 validator: (value) => value == null || value.isEmpty
                     ? 'O nome é obrigatório'
                     : null,
               ),
+              SizedBox(height: 20),
+
+              // Campo Peso (g)
               TextFormField(
                 controller: _weightController,
-                decoration: InputDecoration(labelText: 'Peso (g)'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFF4E9DA),
+                  labelText: 'Peso (g)',
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color(0xFF996536),
+                      width: 1.0,
+                    ),
+                  ),
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) => value == null || value.isEmpty
                     ? 'O peso é obrigatório'
                     : null,
               ),
+              SizedBox(height: 20),
+
+              // Campo Categoria
               TextFormField(
                 controller: _categoryController,
-                decoration: InputDecoration(labelText: 'Categoria'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFF4E9DA),
+                  labelText: 'Categoria',
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color(0xFF996536),
+                      width: 1.0,
+                    ),
+                  ),
+                ),
                 validator: (value) => value == null || value.isEmpty
                     ? 'A categoria é obrigatória'
                     : null,
               ),
+              SizedBox(height: 20),
+
+              // Campo Preço
               TextFormField(
                 controller: _priceController,
-                decoration: InputDecoration(labelText: 'Preço'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFF4E9DA),
+                  labelText: 'Preço',
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color(0xFF996536),
+                      width: 1.0,
+                    ),
+                  ),
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) =>
                     _priceController.numberValue <= 0 ? 'Preço inválido' : null,
               ),
+              SizedBox(height: 20),
+
+              // Campo de seleção Receita
               DropdownButtonFormField<String>(
                 value: _selectedReceipeId,
-                decoration: InputDecoration(labelText: 'Receita'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFF4E9DA),
+                  labelText: 'Receita',
+                  labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color(0xFF996536),
+                      width: 1.0,
+                    ),
+                  ),
+                ),
                 items: _receipes.map<DropdownMenuItem<String>>((receipe) {
                   return DropdownMenuItem<String>(
                     value: receipe['id'],
@@ -152,9 +266,20 @@ class _ProductRegistrationScreenState extends State<ProductRegistrationScreen> {
                     : null,
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _submitProduct,
-                child: Text('Cadastrar Produto'),
+              Container(
+                width: 150,
+                child: ElevatedButton(
+                  onPressed: _submitProduct,
+                  child: Text('Cadastrar Produto'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF996536),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
