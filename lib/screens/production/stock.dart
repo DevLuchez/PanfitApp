@@ -94,7 +94,7 @@ class _StockPageState extends State<StockPage> {
                     return ListTile(
                       title: Text(product.name),
                       subtitle: Text(product.category),
-                      trailing: Text('Valor unitário: $unitValue'),
+                      trailing: Text('Quantidade: $unitValue'),
                     );
                   },
                 );

@@ -215,11 +215,26 @@ class _ProductSaleState extends State<ProductSale> {
                         controller: _quantityController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          labelText: 'Quantidade',
+                          prefixIcon: Icon(Icons.search, color: Color(0xFF996536)),
                           filled: true,
                           fillColor: Color(0xFFF4E9DA),
-                          labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          labelText: 'Quantidade',
+                          labelStyle: TextStyle(
+                            fontFamily: 'Poppins',
+                            color: Color(0xFF996536),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Color(0xFF996536)),
+                          ),
                         ),
                       ),
                     ),
@@ -257,11 +272,26 @@ class _ProductSaleState extends State<ProductSale> {
                     });
                   },
                   decoration: InputDecoration(
-                    labelText: "Forma de Pagamento",
+                    prefixIcon: Icon(Icons.search, color: Color(0xFF996536)),
                     filled: true,
                     fillColor: Color(0xFFF4E9DA),
-                    labelStyle: TextStyle(fontFamily: 'Poppins', color: Color(0xFF996536)),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    labelText: 'Forma de pagamento',
+                    labelStyle: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Color(0xFF996536),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Color(0xFF996536)),
+                    ),
                   ),
                 ),
               ],
