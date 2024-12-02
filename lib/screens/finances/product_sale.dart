@@ -245,7 +245,7 @@ class _ProductSaleState extends State<ProductSale> {
                         backgroundColor: Color(0xFF996536),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       ),
-                      child: Text('Adicionar', style: TextStyle(fontFamily: 'Poppins')),
+                      child: Text('Adicionar', style: TextStyle(fontFamily: 'Poppins', color: Colors.white)),
                     ),
                   ],
                 ),
@@ -310,7 +310,7 @@ class _ProductSaleState extends State<ProductSale> {
                   title: Text('${product.name} (x$quantity)'),
                   subtitle: Text('Subtotal: R\$ ${subtotal.toStringAsFixed(2)}'),
                   trailing: IconButton(
-                    icon: Icon(Icons.delete, color: Colors.red),
+                    icon: Icon(Icons.delete, color: Color(0xFFE07B74)),
                     onPressed: () {
                       setState(() => _orderItems.removeAt(index));
                     },
@@ -342,7 +342,7 @@ class _ProductSaleState extends State<ProductSale> {
                     ),
                     child: Text(
                       'Finalizar Venda',
-                      style: TextStyle(fontFamily: 'Poppins', fontSize: 16),
+                      style: TextStyle(fontFamily: 'Poppins', fontSize: 16, color: Colors.white),
                     ),
                   ),
                 ],

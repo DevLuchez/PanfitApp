@@ -106,7 +106,7 @@ class _CookingPageState extends State<CookingPage> {
       ),
 
       body: isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: CircularProgressIndicator(color: Color(0xFF996536)))
             : TabBarView(
           children: [
             // Aba "Em produção"
@@ -124,7 +124,7 @@ class _CookingPageState extends State<CookingPage> {
                         _updateOrderStatus(order.id);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFC4A580),
+                        backgroundColor: Color(0xFF996536),
                         foregroundColor: Colors.white,
                       ),
                       child: Text('Finalizar produto'),
@@ -144,7 +144,7 @@ class _CookingPageState extends State<CookingPage> {
                     title: Text(order.product.name),
                     subtitle: Text('Quantidade: ${order.quantity}'),
                     trailing: IconButton(
-                      icon: Icon(Icons.print),
+                      icon: Icon(Icons.print, color: Color(0xFF996536)),
                       onPressed: () {
                         print('Gerando código de barras para: ${order.product.name}');
                       },

@@ -148,7 +148,7 @@ class _ProductionRequestScreenState extends State<ProductionRequestScreen> {
             ElevatedButton(
               onPressed: _isSubmitting ? null : _submitProductionRequest,
               child: _isSubmitting
-                  ? CircularProgressIndicator(color: Colors.brown)
+                  ? CircularProgressIndicator(color: Color(0xFF996536))
                   : Text('Enviar'),
             ),
           ],

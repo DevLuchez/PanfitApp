@@ -31,7 +31,7 @@ class _StockPageState extends State<StockPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false, // Opcional: Evita que o botão de voltar apareça automaticamente
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(50.0), // Ajuste o tamanho conforme necessário
+            preferredSize: Size.fromHeight(2.0), // Ajuste o tamanho conforme necessário
             child: TabBar(
               tabs: [
                 Tab(text: 'Ingredientes'),
@@ -50,7 +50,7 @@ class _StockPageState extends State<StockPage> {
               future: futureItems,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CircularProgressIndicator(color: Color(0xFF996536)));
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Erro ao carregar ingredientes: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -78,7 +78,7 @@ class _StockPageState extends State<StockPage> {
               future: futureProducts,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CircularProgressIndicator(color: Color(0xFF996536)));
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Erro ao carregar produtos: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {

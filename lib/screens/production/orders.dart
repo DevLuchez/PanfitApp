@@ -64,7 +64,7 @@ class _OrdersPageState extends State<OrdersPage> {
         ),
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator(color: Color(0xFF996536)))
           : orders.isEmpty
           ? Center(
         child: Text(

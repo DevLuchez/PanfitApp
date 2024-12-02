@@ -81,7 +81,7 @@ class _InputTimeState extends State<InputTime> {
                 ),
                 child: isRunning
                     ? CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.brown),
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF996536)),
                 )
                     : Text(
                   'Iniciar Produção',
